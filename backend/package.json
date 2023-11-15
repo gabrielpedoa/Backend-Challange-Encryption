@@ -1,14 +1,16 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "backend developer jr. challange",
+  "description": "backend developer challange",
   "main": "server.ts",
   "scripts": {
+    "start": "nodemon ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel Antunes",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
