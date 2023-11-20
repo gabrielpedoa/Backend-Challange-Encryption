@@ -14,10 +14,6 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("yeah! that's my server");
-});
-
 app.use(router());
 
 app.listen(port, () => {
