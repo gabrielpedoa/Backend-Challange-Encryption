@@ -1,14 +1,17 @@
-import bcrypt from "bcrypt";
+import crypto from "node:crypto";
 
-const salt = 10;
+const cypherKey = "mySecretKey";
 
 export async function createHash(value: string) {
-  const generateSalt = await bcrypt.genSalt(salt);
-  const hashedValue = await bcrypt.hash(value, generateSalt);
-  return hashedValue;
+  let cipher = crypto.createCipher("aes-256-cbc", cypherKey);
+  let crypted = cipher.update(value, "utf8", "hex");
+  crypted += cipher.final("hex");
+  return crypted; //94grt976c099df25794bf9ccb85bea72
 }
 
-export async function compareHashedValue(hash: string, value: string) {
-  const isValid = await bcrypt.compare(value, hash);
-  return isValid;
+export async function decryptHash(hash: string) {
+  let cipher = crypto.createCipher("aes-256-cbc", cypherKey);
+  let crypted = cipher.update(hash, "utf8", "hex");
+  crypted += cipher.final("hex");
+  return crypted; //94grt976c099df25794bf9ccb85bea72
 }
